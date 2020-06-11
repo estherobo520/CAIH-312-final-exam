@@ -3,6 +3,7 @@ package edu.ti.caih313.collections.aggregate;
 import edu.ti.caih313.collections.dataobj.Name;
 import edu.ti.caih313.collections.dataobj.Person;
 
+import java.beans.FeatureDescriptor;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.Arrays;
@@ -24,14 +25,14 @@ public class FilterAndSortSomePeople {
                 new Person(new Name("Bo", "Peep"), FEMALE, LocalDate.of(1624, Month.FEBRUARY, 23))
         };
 
-        //TODO -- correctly calculate number of MALEs under 40 years of age
-        // 20 points
-        long numMalesUnder40 = 0;
+        long numMalesUnder40 = Arrays.stream(personArray).filter(p -> (p.getAge() < 40) && (p.getGender() == MALE)).count();
         System.out.println("Number of males under 40: " + numMalesUnder40);
 
         System.out.print("\n");
         System.out.println("All FEMALEs in reverse (oldest to youngest) age order");
-        //TODO -- implement code according to above instructions
-        // 20 points
+        Arrays.stream(personArray)
+                .filter(p -> p.getGender() == FEMALE)
+                .sorted((p1,p2) -> (int) (p2.getAge() - p1.getAge()))
+                .forEach(e -> System.out.println(e.getName().getFirstName() + " " + e.getName().getLastName()));
     }
 }

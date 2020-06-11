@@ -36,9 +36,26 @@ public class Name {
         return Objects.hash(firstName, lastName);
     }
 
-    //TODO -- implement toString using StringBuilder 2 points
     @Override
     public String toString() {
-        return null;
+
+        StringBuilder emailStringBuilder = new StringBuilder("");
+        if(firstName == null && lastName == null) {
+            emailStringBuilder.append("no full name available");
+        }
+        if (getFirstName() != null) {
+            emailStringBuilder.append("First name: " + getFirstName() + ".");
+        }
+        else{
+            emailStringBuilder.append("No first name available");
+        }
+
+        if (getLastName() != null) {
+            emailStringBuilder.append("Last name: " + getLastName() + ".");
+        }
+        else{
+            emailStringBuilder.append("No last name available");
+        }
+        return emailStringBuilder.toString();
     }
 }

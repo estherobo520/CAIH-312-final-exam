@@ -35,12 +35,14 @@ public class EmailAddress {
         return emailMap.get(type);
     }
 
-    //TODO -- valid email address must be:
-    // 1) not null
-    // 2) contain an '@' character
-    // 3) end in ".edu" or ".com"
-    // 20 points
     static boolean validate(String emailAddress) {
-        return false;
+
+        if(emailAddress != null && emailAddress.contains("@") && (emailAddress.endsWith(".edu") || emailAddress.endsWith(".com")))
+        {
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }
