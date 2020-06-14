@@ -45,4 +45,23 @@ public class EmailAddress {
             return false;
         }
     }
+
+    @Override
+    public String toString() {
+
+        StringBuilder emailStringBuilder = new StringBuilder("<");
+        if((getEmailAddress(Type.HOME) == null) && (getEmailAddress(Type.WORK) == null) && (getEmailAddress(Type.SCHOOL) == null)) {
+            emailStringBuilder.append("no full name available");
+        }
+        if ((getEmailAddress(Type.WORK) != null)) {
+            emailStringBuilder.append("WORK: " + (getEmailAddress(Type.WORK)));
+        }
+        if ((getEmailAddress(Type.SCHOOL) != null)) {
+            emailStringBuilder.append("SCHOOL: " + (getEmailAddress(Type.SCHOOL)));
+        }
+        emailStringBuilder.append(">");
+
+        return emailStringBuilder.toString();
+    }
+
 }

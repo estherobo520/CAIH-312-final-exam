@@ -12,6 +12,7 @@ public class Person {
 
     private LocalDate birthDate;
 
+
     public enum Gender {MALE, FEMALE}
 
     public Person(Name name, Gender gender, LocalDate birthDate) {
@@ -26,6 +27,9 @@ public class Person {
 
     public void setName(Name name) {
         this.name = name;
+    }
+    public void setEmailAddress(EmailAddress emailAddress) {
+        this.emailAddress = emailAddress;
     }
 
     public Gender getGender() {
@@ -49,13 +53,6 @@ public class Person {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("MMM d, yyyy 'C.E.'");
         String birthDateString = birthDate.format(format);
 
-        String nameFormattedString =String.format("name is %s",name);
-        String genderFormattedString =String.format("gender is %s",gender);
-        String emailAddressFormattedString=String.format("emailAddress is %s",emailAddressString);
-        String birthDateFormattedString=String.format("birth date is %s",birthDateString);
-        String ageFormattedString=String.format("age is %x", getAge());
-
-        return "Person: " + nameFormattedString + genderFormattedString + emailAddressFormattedString + birthDateFormattedString + ageFormattedString + "";
-
+        return String.format("Person {Name = %s, Gender = %s, Birth Date = %s, Email Address = %s}", name, gender, birthDateString, emailAddressString);
     }
 }

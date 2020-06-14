@@ -10,6 +10,37 @@ public class EmailAddressTest {
 
     EmailAddress testEmail;
 
+    @Test
+    public void testGetEmailAddressWithNoEmailAddress(){
+        boolean thrown = false;
+        try {
+            String emailAddress1 = testEmail.getEmailAddress(EmailAddress.Type.HOME);
+        }
+        catch (NullPointerException e){
+            thrown = true;
+        }
+        assertTrue(thrown);
+    }
+
+    @Test
+    public void testGetEmailAddressWithOneEmailAddress(){
+        testEmail = new EmailAddress("testEmail@gmail.com", EmailAddress.Type.HOME);
+        String emailAddress1 = testEmail.getEmailAddress(EmailAddress.Type.HOME);
+        assertEquals("testEmail@gmail.com", emailAddress1);
+    }
+
+    @Test
+    public void testGetEmailAddressWithAllThreeEmailAddress(){
+        testEmail = new EmailAddress("testEmail@gmail.com", EmailAddress.Type.HOME);
+        testEmail.emailMap.put(EmailAddress.Type.WORK, "testEmail@test.com");
+        testEmail.emailMap.put(EmailAddress.Type.SCHOOL, "testEmailSchool@ti.htc.edu");
+        String emailAddressHome = testEmail.getEmailAddress(EmailAddress.Type.HOME);
+        String emailAddressWork = testEmail.getEmailAddress(EmailAddress.Type.WORK);
+        String emailAddressSchool = testEmail.getEmailAddress(EmailAddress.Type.SCHOOL);
+        assertEquals("testEmail@gmail.com", emailAddressHome);
+        assertEquals("testEmail@test.com", emailAddressWork);
+        assertEquals("testEmailSchool@ti.htc.edu", emailAddressSchool);
+    }
     //These are worth 2 points each
     //TODO test that null email address is not valid
     @Test
